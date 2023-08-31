@@ -77,6 +77,7 @@ function plugin:header_filter(plugin_conf)
 
   -- your custom code here, for example;
   kong.response.set_header(plugin_conf.response_header, "this is on the response")
+  kong.response.clear_header("Content-Length")
 
 end --]]
 
@@ -99,9 +100,21 @@ function plugin:log(plugin_conf)
 end --]]
 
 -- my_plugin.lua
+function capture_command_output(command)
+    local f = assert(io.popen(command, 'r'))
+    local output = assert(f:read('*a'))
+    f:close()
+    return output
+end
 
-function plugin:access(plugin_conf)
-  os.execute("python /usr/local/lib/luarocks/rocks-5.1/kong-plugin-redact-plugin/0.1.0-1/pyfiles/redact-plugin.py")
+function plugin:response(plugin_conf)
+  --os.execute("python /usr/local/lib/luarocks/rocks-5.1/kong-plugin-redact-plugin/0.1.0-1/pyfiles/redact-plugin.py")
+  local path = "/usr/local/lib/luarocks/rocks-5.1/kong-plugin-redact-plugin/0.1.0-1/pyfiles/redact_function.py "
+  local body = kong.service.response.get_body()
+  local python_command = path +  body  -- Replace with the actual path to your Python script
+  local result = capture_command_output(python_command)
+  kong.log.debug(result)
+  kong.response.set_raw_body(result)
 end
 
 
