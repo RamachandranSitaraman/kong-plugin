@@ -81,7 +81,7 @@ for _, strategy in helpers.all_strategies() do if strategy ~= "cassandra" then
         -- now check the response to have the header
         local header_value = assert.response(r).has.header("bye-world")
         -- validate the value of that header
-        assert.equal("this is on the response", header_value)
+        assert.equal("this is set on the response", header_value)
       end)
     end)
 
