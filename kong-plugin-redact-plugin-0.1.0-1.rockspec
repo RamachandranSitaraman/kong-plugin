@@ -30,9 +30,10 @@ dependencies = {
 
 build = {
   type = "builtin",
+  copy_directories  = {"pyfiles"}, 
+  
   modules = {
     -- TODO: add any additional code files added to the plugin
-    copy_directories  = {"sources"}, 
     ["kong.plugins."..plugin_name..".handler"] = "kong/plugins/"..plugin_name.."/handler.lua",
     ["kong.plugins."..plugin_name..".schema"] = "kong/plugins/"..plugin_name.."/schema.lua",
   }
