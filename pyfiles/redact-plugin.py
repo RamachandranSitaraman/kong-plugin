@@ -21,6 +21,7 @@ class Plugin(object):
 
     def access(self, kong: kong.kong):
         host, err = kong.request.get_header("host")
+        kong.service.request.enable_buffering()
         if err:
             pass  # error handling
         # if run with --no-lua-style
@@ -29,12 +30,12 @@ class Plugin(object):
         # except Exception as ex:
         #     pass  # error handling
 
-        body = kong.service.response.get_raw_body()
-        if body:
-          body = transform1(body)
-          print(body)
-          kong.response.clear_header("Content-Length")
-          kong.response.set_raw_body(body)
+        # body = kong.service.response.get_raw_body()
+        # if body:
+        #   body = transform1(body)
+        #   print(body)
+        #   kong.response.clear_header("Content-Length")
+        #  kong.response.set_raw_body(body)
         message = "hello"
         if 'message' in self.config:
             message = self.config['message']
