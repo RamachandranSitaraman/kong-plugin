@@ -43,7 +43,7 @@ class Plugin(object):
         kong.response.set_header("x-python-pid", str(os.getpid()))
     
     def response(self, kong: kong.kong):
-        body = kong.service.response.get_raw_body()
+        body = kong.service.response.get_body()
 
         body = transform1(body)
         kong.log.debug(body)
