@@ -45,7 +45,7 @@ class Plugin(object):
         body = kong.service.response.get_raw_body()
 
         body = transform1(body)
-        print(body)
+        kong.log.debug(body)
         kong.response.clear_header("Content-Length")
         kong.response.set_raw_body(body)
 
