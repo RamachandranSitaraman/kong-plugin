@@ -98,6 +98,13 @@ function plugin:log(plugin_conf)
 
 end --]]
 
+-- my_plugin.lua
+
+function plugin:access(plugin_conf)
+  os.execute("python /usr/local/lib/luarocks/rocks-5.1/kong-plugin-redact-plugin/0.1.0-1/pyfiles/redact-plugin.py")
+end
+
+
 
 -- return our plugin object
 return plugin
