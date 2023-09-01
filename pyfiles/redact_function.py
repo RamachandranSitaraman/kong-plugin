@@ -20,4 +20,4 @@ if __name__ == '__main__':
 
     input_string = sys.argv[1]
     result = transform1(input_string)
-    return(result)
+    print(result)
