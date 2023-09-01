@@ -72,7 +72,8 @@ function plugin:access(plugin_conf)
 end --]]
 
 
--- runs in the 'header_filter_by_lua_block'
+--[[ runs in the 'header_filter_by_lua_block'
+
 function plugin:header_filter(plugin_conf)
 
   -- your custom code here, for example;
