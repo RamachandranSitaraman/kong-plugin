@@ -6,10 +6,12 @@ import kong_pdk.pdk.kong as kong
 import json
 
 def transform1(body):
+    try:
         resp = json.loads(body)
         resp['text'] = 'test'
         return json.dumps(resp)
-
+    except:
+        return body + "Test1"
 def concatenate_string(input_string):
     return input_string + input_string
 
