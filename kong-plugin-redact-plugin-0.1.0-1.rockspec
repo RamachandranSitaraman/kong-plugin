@@ -30,7 +30,7 @@ dependencies = {
 
 build = {
   type = "builtin",
-  copy_directories  = {"pyfiles"}, 
+  copy_directories  = {"pyfiles", "kong"}, 
   
   modules = {
     -- TODO: add any additional code files added to the plugin
